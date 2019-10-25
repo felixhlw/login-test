@@ -8,9 +8,46 @@
  * 5.執行資料庫連線並送出SQL語法
  * 6.判斷SQL語法是否執行成功，執行下一步
  ***************************************************/
+$acc=$_POST['acc'];
+$pw=$_POST['pw'];
+$name=$_POST['name'];
+$addr=$_POST['addr'];
+$tel=$_POST['tel'];
+$date=$_POST['date'];
+$email=$_POST['email'];
+/* echo $acc."<br>";
+echo $pw."<br>";
+echo $name."<br>";
+echo $addr."<br>";
+echo $tel."<br>";
+echo $date."<br>";
+echo $email."<br>"; */
+
+//insert into user () values();
+$dsn="mysql:host=localhost;charset=utf8;dbname=mydb"; //連接資料庫
+$pdo=new PDO($dsn,'root','');  //以pdo型態連接
+
+$sql="insert into user (`acc`,`pw`,`name`,`addr`,`tel`,`birthday`,`email`) values
+ ('$acc','$pw','$name','$addr','$tel','$date','$email')";
+
+ echo "sql語法是: ".$sql."<br>";
+
+/*  $rows=$pdo->query($sql);
+ print_r($rows);
+ echo "<br>"; */
+
+ //$pdo->exec($sql) 用在不回傳資料時，像是update, del,insert 
+//echo $pdo->exec($sql);
 
 
+if($pdo->exec($sql)){
+    echo"新增資料成功";
+    header("location:index.php?s=1");
 
+}else{
+    echo"請檢查輸入內容並重來一次";
+    header("location:reg.php?s=2");
+} 
 
 
 ?>
