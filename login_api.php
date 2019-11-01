@@ -30,8 +30,8 @@
 
 
 <?php
-include_once "base.php";
-/***************************************************
+include_once "base.php";   //載入共用檔頭
+/************************************* **************
  * 會員登入行為：
  * 1.建立連線資料庫的參數
  * 2.判斷是否有送來表單資料
@@ -52,13 +52,13 @@ echo "<br><br>";
 
 
 /* $dsn="mysql:host=localhost;charset=utf8;dbname=mydb";
-$pdo=new PDO($dsn, 'root','' ); */
+$pdo=new PDO($dsn, 'root','' ); 
+$sql="select count(*) as 'r' from user where acc='$acc' && pw='$pw'"; */
 
-/* $sql="select count(*) as 'r' from user where acc='$acc' && pw='$pw'"; */
 $sql="select * from user where acc='$acc' && pw='$pw'";
 
-/* $pwd="select `pw` from user where acc='$acc'"; */ //從資料庫中抓取密碼資料
-/* $data=$pdo->query($sql)->fetchColumn(); */
+/* $pwd="select `pw` from user where acc='$acc'";  //從資料庫中抓取密碼資料
+$data=$pdo->query($sql)->fetchColumn(); */
 
 $data=$pdo->query($sql)->fetch();
 /* $pp=$pdo->query($pwd)->fetch(); */
@@ -78,14 +78,22 @@ echo "<br><br>"; */
 /* if ($data['r']==1) { */
   # code...
 
-/* if($acc==$data['acc'] || $pw==$data['pw']){  */
+/* if($acc==$data['acc'] || $pw==$data['pw']){  //--測試用--// */
+    
 if(!empty($data)){
   echo "<h1 style='color:0000ff'; class='blink';>登入成功<h1>";
-  $_SESSION['login']=1;
-  $_SESSION['id']=$data['id'];
+
+ //---這一段是用 session來做登入的紀錄控制----// 
+
+/*   $_SESSION['login']=1;
+  $_SESSION['id']=$data['id']; */
  /* header("location:member_center.php?id=".$data['id']);  */
-/*  setcookie("login", 1 , time()+120);
- setcookie("id", $data['id'], time()+120); */
+ 
+ 
+ //---這一段是用 cookie來做登入的紀錄控制----//
+
+ setcookie("login", 1 , time()+3600);
+ setcookie("id", $data['id'], time()+3600);
 
 
  header("location:member_center.php"); 

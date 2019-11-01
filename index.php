@@ -1,8 +1,18 @@
 <?php
-include_once "base.php";
-if (!empty($_SESSION['login'])) {
+include_once "base.php"; 
+
+//---這一段是用 session來做登入的紀錄控制----//
+
+/* if (!empty($_SESSION['login'])) { 
   header("location:member_center.php");
-  }
+  } */
+
+//---這一段是用 cookie來做登入的紀錄控制----//
+
+  if (!empty($_COOKIE['login'])) {
+    header("location:member_center.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +41,22 @@ if(!empty($_GET['s'])){
 
 if(!empty($_GET['err'])){
   echo "<div class='err ct blink'>登入失敗囉，請檢查帳號或密碼</div>";
+
+
+  //---這一段是用 session來做登入的紀錄控制----//  
  
-}elseif(empty($_SESSION['login'])){
+/* }elseif(empty($_SESSION['login'])){
+  echo "<div class='err ct blink'>你尚未登入，請登入!</div>";
+  echo "<br>";
+} */
+
+//---這一段是用 cookie來做登入的紀錄控制----//
+
+}elseif(empty($_COOKIE['login'])){
   echo "<div class='err ct blink'>你尚未登入，請登入!</div>";
   echo "<br>";
 }
+
 ?>
 
   <h1>會員登入</h1>

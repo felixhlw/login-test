@@ -12,7 +12,13 @@
 <?php
 
 include_once "base.php";
-if (empty($_SESSION['login'])) {
+
+
+//---這一段是用 session來做登入的紀錄控制----//
+/* if (empty($_SESSION['login'])) { */
+
+//---這一段是用 cookie來做登入的紀錄控制----//  
+if (empty($_COOKIE['login'])) {  
   exit;
 }
 
@@ -22,9 +28,12 @@ if (empty($_SESSION['login'])) {
 /* $dsn="mysql:host=localhost;charset=utf8;dbname=mydb";
 $pdo=new PDO($dsn, 'root','' ); */
 /* $i=$_GET['id']; */
-/* $i=$_COOKIE['id']; */
-$i=$_SESSION['id'];
 
+//---這一段是用 session來做登入的紀錄控制----//
+/* $i=$_SESSION['id']; */
+
+//---這一段是用 cookie來做登入的紀錄控制----//
+$i=$_COOKIE['id'];
 $sql= "select * from user where id='".$i."'";
 
 /* $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC); */
@@ -85,7 +94,11 @@ $dd=$pdo->query($sql)->fetch();
 <br>
     <div>
 <?php
-if(!empty($_SESSION['login'])){
+//---這一段是用 session來做登入的紀錄控制----//
+/* if(!empty($_SESSION['login'])){ */
+
+  //---這一段是用 cookie來做登入的紀錄控制----//
+if(!empty($_COOKIE['login'])){  
   print <<<EOT
   <a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a>
 
