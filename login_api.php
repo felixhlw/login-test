@@ -81,11 +81,11 @@ echo "<br><br>"; */
 /* if($acc==$data['acc'] || $pw==$data['pw']){  */
 if(!empty($data)){
   echo "<h1 style='color:0000ff'; class='blink';>登入成功<h1>";
-/*   $_SESSION['login']=1;
-  $_SESSION['id']=$data['id']; */
+  $_SESSION['login']=1;
+  $_SESSION['id']=$data['id'];
  /* header("location:member_center.php?id=".$data['id']);  */
- setcookie("login", 1 , time()+120);
- setcookie("id", $data['id'], time()+120);
+/*  setcookie("login", 1 , time()+120);
+ setcookie("id", $data['id'], time()+120); */
 
 
  header("location:member_center.php"); 

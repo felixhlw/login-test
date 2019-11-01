@@ -1,8 +1,8 @@
 <?php
 include_once "base.php";
-/* if (!empty($_SESSION['login'])) {
+if (!empty($_SESSION['login'])) {
   header("location:member_center.php");
-  } */
+  }
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,11 @@ if(!empty($_GET['s'])){
 
 if(!empty($_GET['err'])){
   echo "<div class='err ct blink'>登入失敗囉，請檢查帳號或密碼</div>";
- }
+ 
+}elseif(empty($_SESSION['login'])){
+  echo "<div class='err ct blink'>你尚未登入，請登入!</div>";
+  echo "<br>";
+}
 ?>
 
   <h1>會員登入</h1>

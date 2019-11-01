@@ -12,13 +12,18 @@
 <?php
 
 include_once "base.php";
-if (empty($_COOKIE['login'])) {
+if (empty($_SESSION['login'])) {
   exit;
 }
+
+/* if (empty($_COOKIE['login'])) {
+  exit;
+} */
 /* $dsn="mysql:host=localhost;charset=utf8;dbname=mydb";
 $pdo=new PDO($dsn, 'root','' ); */
 /* $i=$_GET['id']; */
-$i=$_COOKIE['id'];
+/* $i=$_COOKIE['id']; */
+$i=$_SESSION['id'];
 
 $sql= "select * from user where id='".$i."'";
 
@@ -31,7 +36,13 @@ $dd=$pdo->query($sql)->fetch();
 
   <div class="member">
     <div class="wellcome">
-      HI! 歡迎光臨!以下是你的個人資料: 
+      HI! 
+      <?php
+      echo $dd['name'].",";
+      ?>
+      歡迎光臨!以下是你的個人資料: 
+      <br><br>
+      <a href="logout.php">登出</a>
 
     </div>
     <br>
@@ -71,17 +82,37 @@ $dd=$pdo->query($sql)->fetch();
         <td><?=$dd['tel']?></td>
       </tr>
     </table>
+<br>
+    <div>
+<?php
+if(!empty($_SESSION['login'])){
+  print <<<EOT
+  <a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a>
+
+  EOT;
+
+}else{
+  print <<<EOT
+  <br>
+  <a href="index.php" >回首頁 </a> 
+  <br>
+
+  EOT;  
+}  
+?>
+    
+    </div>
 <?php
       /* 在<<<底下可大量直接使用 HTML 及""等符號 */
     print <<<EOT
   
     <br>
-    <a href="index.php">回首頁 </a> 
+
     <br>
     <br>
       EOT測試
 
-      
+     
 
 EOT; 
 ?>    
