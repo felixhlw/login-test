@@ -37,21 +37,23 @@ $i=$_COOKIE['id'];
 $sql= "select * from user where id='".$i."'";
 
 /* $user=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC); */
-$dd=$pdo->query($sql)->fetch(); 
+$user=$pdo->query($sql)->fetch(); 
 
 
-?>
-
+?></div>
 
   <div class="member">
     <div class="wellcome">
-      HI! 
+      
       <?php
-      echo $dd['name'].",";
-      ?>
-      歡迎光臨!以下是你的個人資料: 
+      echo "<div class='ct'>HI!" .$user['name'].", 歡迎光臨!以下是你的個人資料: ";
+           
+      ?>    
+           </div>
+
       <br><br>
-      <a href="logout.php">登出</a>
+      <div class="ct">
+      <a href="logout.php">登出</a></div>
 
     </div>
     <br>
@@ -60,37 +62,48 @@ $dd=$pdo->query($sql)->fetch();
 
   <p>
 
-  
-    <table  >
+  <form action="edit_user.php" method="post"> 
+    <table class="wrapper" >
       <tr>
         <td>ID</td>
-        <td><?=$dd['id']?></td>
+        <td><?=$user['id']?></td>
       </tr>
       <tr>
         <td>帳號</td>
-        <td><?=$dd['acc']?></td>
-      </tr>
-      <tr>
-        <td>姓名</td>
-        <td><?=$dd['name']?></td>
+        <td><?=$user['acc']?></td>
       </tr>
       <tr>
         <td>密碼</td>
-        <td><?=$dd['pw']?></td>
+        <td><?=$user['pw']?></td>
+      </tr>
+      <tr>
+        <td>姓名</td>
+        <td><input type="text" name="name" id="name" value="<?=$user['name']?>"></td>
       </tr>
       <tr>
         <td>生日</td>
-        <td><?=$dd['birthday']?></td>
+        <td><input type="text" name="birthday" id="birthday" value="<?=$user['birthday']?>"></td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td><input type="text" name="email" id="" value="<?=$user['email']?>"></td>
       </tr>
       <tr>
         <td>地址</td>
-        <td><?=$dd['addr']?></td>
+        <td><input type="text" name="addr" id="" value="<?=$user['addr']?>"></td>
       </tr>
       <tr>
         <td>電話</td>
-        <td><?=$dd['tel']?></td>
+        <td><input type="text" name="tel" id="tel" value="<?=$user['tel']?>"></td>
       </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="送出編輯">
+        </td>
+      </tr>
+        <input type="hidden" name="id" value="<?=$user['id']?>">
     </table>
+</form>
 <br>
     <div>
 <?php
@@ -100,7 +113,7 @@ $dd=$pdo->query($sql)->fetch();
   //---這一段是用 cookie來做登入的紀錄控制----//
 if(!empty($_COOKIE['login'])){  
   print <<<EOT
-  <a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a>
+  <div class="ct"><a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a></div>
 
   EOT;
 
@@ -115,6 +128,10 @@ if(!empty($_COOKIE['login'])){
 ?>
     
     </div>
+
+
+
+
 <?php
       /* 在<<<底下可大量直接使用 HTML 及""等符號 */
     print <<<EOT
@@ -123,7 +140,8 @@ if(!empty($_COOKIE['login'])){
 
     <br>
     <br>
-      EOT測試
+    <div class="ct">
+      ---這邊有用到EOT做測試---</div>
 
      
 

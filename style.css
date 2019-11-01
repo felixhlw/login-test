@@ -7,17 +7,19 @@
   list-style-type:none;
 }
 
-.member table {
+.member, table {
   border-collapse: collapse;
 }
 
-.member td{
+
+.member, td{
   border:1px solid #999;
 
   margin:0 ;
  
   padding:10px
 }
+
 
 .wrapper,.member{
   margin:30px  auto 0 auto;
@@ -40,7 +42,8 @@
   width:100%;
 }
 .wrapper input[type='submit'],
-.wrapper input[type='reset']{
+.wrapper input[type='reset'],
+.wrapper input[type='button']{
   padding:5px 10px;
   margin:0 5px;
   font-size:16px;
