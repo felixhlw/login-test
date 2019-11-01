@@ -1,5 +1,14 @@
+<?php
+include_once "base.php";
+/* if (!empty($_SESSION['login'])) {
+  header("location:member_center.php");
+  } */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +16,11 @@
   <link rel="shortcut icon" href="#" type="image/x-icon">
   <title>註冊登入系統</title>
   <link rel="stylesheet" href="style.css">
+
 </head>
+
+
+
 <body>
 
 <?php
@@ -15,9 +28,14 @@
 if(!empty($_GET['s'])){
  echo "註冊成功，請以帳號密碼登入系統";
 }
+
+if(!empty($_GET['err'])){
+  echo "<div class='err ct blink'>登入失敗囉，請檢查帳號或密碼</div>";
+ }
 ?>
 
   <h1>會員登入</h1>
+  
 <form action="login_api.php" method="post"> 
 <table class="wrapper">
   <tr>

@@ -1,4 +1,36 @@
+
+<style>
+.blink {
+    -webkit-animation: 2s linear infinite condemned_blink_effect; // for android
+    animation: 2s linear infinite condemned_blink_effect;
+}
+@-webkit-keyframes condemned_blink_effect { // for android
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+@keyframes condemned_blink_effect {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+</style>  
+
+
 <?php
+include_once "base.php";
 /***************************************************
  * 會員登入行為：
  * 1.建立連線資料庫的參數
@@ -9,28 +41,59 @@
   ***************************************************/
 
 $acc=$_POST['acc'];
-$pw=$POST['pw'];
+$pw=$_POST['pw'];
 
-echo "acc=".$acc;
+
+echo "你的帳號是: ".$acc;
 echo "<br>";
-echo "pw=".$pw;
+echo "你輸入的密碼是: ".$pw;
+echo "<br><br>";
 
 
-$dsn="mysql:host=localhost;charset=utf8;dbname=mydb";
-$pdo=new PDO($dsn, 'root','' );
 
+/* $dsn="mysql:host=localhost;charset=utf8;dbname=mydb";
+$pdo=new PDO($dsn, 'root','' ); */
+
+/* $sql="select count(*) as 'r' from user where acc='$acc' && pw='$pw'"; */
 $sql="select * from user where acc='$acc' && pw='$pw'";
 
+/* $pwd="select `pw` from user where acc='$acc'"; */ //從資料庫中抓取密碼資料
+/* $data=$pdo->query($sql)->fetchColumn(); */
+
 $data=$pdo->query($sql)->fetch();
+/* $pp=$pdo->query($pwd)->fetch(); */
+ 
 
-
+echo "檢查結果: ";
 print_r($data);
 
-if($acc==$data['acc'] || $pw==$data['pw']){
-  echo "登入成功";
+
+
+
+echo "<br><br>";
+/* echo"正確的密碼是: ";
+print_r($pp[0]);
+echo "<br><br>"; */
+
+/* if ($data['r']==1) { */
+  # code...
+
+/* if($acc==$data['acc'] || $pw==$data['pw']){  */
+if(!empty($data)){
+  echo "<h1 style='color:0000ff'; class='blink';>登入成功<h1>";
+/*   $_SESSION['login']=1;
+  $_SESSION['id']=$data['id']; */
+ /* header("location:member_center.php?id=".$data['id']);  */
+ setcookie("login", 1 , time()+120);
+ setcookie("id", $data['id'], time()+120);
+
+
+ header("location:member_center.php"); 
+ 
   
 }else{
-  echo "登入失敗";
+  echo "<h1 style='color:ff0000'; class='blink';>登入失敗!<h1>";
+  header("location:index.php?err=1");
 }
 
 
