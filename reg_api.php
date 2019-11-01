@@ -9,23 +9,25 @@
  * 6.判斷SQL語法是否執行成功，執行下一步
  ***************************************************/
 include('base.php');
-$acc=$_POST['acc'];
-$pw=$_POST['pw'];
-$name=$_POST['name'];
-$addr=$_POST['addr'];
-$tel=$_POST['tel'];
-$date=$_POST['date'];
-$email=$_POST['email'];
+
+$data['acc']=$_POST['acc'];
+$data['pw']=$_POST['pw'];
+$data['name']=$_POST['name'];
+$data['addr']=$_POST['addr'];
+$data['tel']=$_POST['tel'];
+$data['birthday']=$_POST['birthday'];
+$data['email']=$_POST['email'];
 
 
 //insert into user () values();
 /* $dsn="mysql:host=localhost;charset=utf8;dbname=mydb"; //連接資料庫
 $pdo=new PDO($dsn,'root','');  //以pdo型態連接 */
 
-$sql="insert into user (`acc`,`pw`,`name`,`addr`,`tel`,`birthday`,`email`) values
- ('$acc','$pw','$name','$addr','$tel','$date','$email')";
 
- echo "sql語法是: ".$sql."<br>";
+/* $sql="insert into user (`acc`,`pw`,`name`,`addr`,`tel`,`birthday`,`email`) values
+ ('$acc','$pw','$name','$addr','$tel','$birthday','$email')"; */
+
+/*  echo "sql語法是: ".$sql."<br>"; */
 
 /*  $rows=$pdo->query($sql);
  print_r($rows);
@@ -35,13 +37,18 @@ $sql="insert into user (`acc`,`pw`,`name`,`addr`,`tel`,`birthday`,`email`) value
 //echo $pdo->exec($sql);
 
 
-if($pdo->exec($sql)){
-    echo"新增資料成功";
+ /* if($pdo->exec($sql)){  */
+ if(insert("user",$data)){
+    # code...
+    
+/*     echo"新增資料成功"; */ 
+
     header("location:index.php?s=1");
 
 }else{
-    echo"請檢查輸入內容並重來一次";
+/*     echo"請檢查輸入內容並重來一次"; */
     header("location:reg.php?s=2");
+
 } 
 
 

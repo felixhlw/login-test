@@ -36,10 +36,10 @@ include_once "base.php";
 <?php
 
 if(!empty($_GET['s'])){
- echo "註冊成功，請以帳號密碼登入系統";
-}
+ echo "<div class='ok ct blink'>註冊成功，請以帳號密碼登入系統</div>";
 
-if(!empty($_GET['err'])){
+
+}elseif(!empty($_GET['err'])){
   echo "<div class='err ct blink'>登入失敗囉，請檢查帳號或密碼</div>";
 
 

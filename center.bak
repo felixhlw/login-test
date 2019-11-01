@@ -46,11 +46,11 @@ $user=$pdo->query($sql)->fetch();
       ?>    
       
 
-      <br>
+      <br><br>
       <div class="ct"><a href="logout.php">登出</a></div>
 
     </div>
-    
+    <br>
     <div class="private">
       <!--請自行設計個人資料的呈現方式並從資料庫取得會員資料-->
 
@@ -101,13 +101,43 @@ $user=$pdo->query($sql)->fetch();
       <br>
     </div>
     
+<?php
+//---這一段是用 session來做登入的紀錄控制----//
+/* if(!empty($_SESSION['login'])){ */
 
-
-     <div class="ct"><a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a></div>
+      //---這一段是用 cookie來做登入的紀錄控制----//
+    if(!empty($_COOKIE['login'])){  
+      print <<<EOT
+      <div class="ct"><a href="index.php" onclick="alert('你已經登入了喔!');">測試回首頁看看吧~</a></div>
     
+      EOT;
 
+    }else{
+      print <<<EOT
+      <br>
+      <a href="index.php" >回首頁 </a> 
+      <br>
+  
+      EOT;  
 
+    }  
 
+      /* 在<<<底下可大量直接使用 HTML 及""等符號 */
+    print <<<EOT
+  
+    <br>
+
+    <br>
+    <br>
+    <div class="ct">
+      ---這邊有用到EOT做測試---
+    </div>
+
+     
+
+    EOT; 
+
+  ?>    
 
     
   </div>

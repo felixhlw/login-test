@@ -7,12 +7,12 @@
   list-style-type:none;
 }
 
-.member, table {
+.member table {
   border-collapse: collapse;
 }
 
 
-.member, td{
+.member td{
   border:1px solid #999;
 
   margin:0 ;
@@ -36,7 +36,9 @@
   padding:5px 3px;
 }
 .wrapper input[type='text'],
-.wrapper input[type='password']{
+.wrapper input[type='password'],
+.wrapper input[type='date']{  
+  background-color:#efefef;
   padding:2px 2px;
   font-size:16px;
   width:100%;
@@ -44,8 +46,8 @@
 .wrapper input[type='submit'],
 .wrapper input[type='reset'],
 .wrapper input[type='button']{
-  padding:5px 10px;
-  margin:0 5px;
+  padding:5px 11px;
+  margin:8px 10px;
   font-size:16px;
 }
 h1{
@@ -95,6 +97,15 @@ h1{
       visibility: visible;
   }
 }
+.ok{
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: -100px;
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
+}
+
 .err{
   margin: 0 auto;
   margin-top: 30px;
@@ -102,6 +113,4 @@ h1{
   font-size: 20px;
   font-weight: bold;
   color: red;
-
-
 }

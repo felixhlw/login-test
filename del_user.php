@@ -1,13 +1,16 @@
+<link rel="stylesheet" href="style.css">s
 <?php
 include "base.php";
 $id=$_POST['id'];
 
 $sql="delete from user WHERE id='$id'";
 
+echo "<div class='ct'>";
 print_r($sql);
+echo "</div>";
 
 //執行
-/* $pdo->exec($sql); */
+$pdo->exec($sql);
 ?>
 
 
